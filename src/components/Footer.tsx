@@ -72,6 +72,14 @@ export default function Footer() {
               </li>
               <li>
                 <button
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  고객 후기
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => scrollToSection('contact')}
                   className="text-gray-400 hover:text-white transition-colors"
                 >

@@ -8,6 +8,7 @@ const navItems = [
   { id: 'services', label: '서비스' },
   { id: 'why-us', label: '왜 매트박사?' },
   { id: 'process', label: '수리 과정' },
+  { id: 'testimonials', label: '고객 후기' },
   { id: 'contact', label: '문의하기' },
 ];
 
