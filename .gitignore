@@ -48,3 +48,5 @@ tmpclaude-*
 
 # playwright
 .playwright-mcp
+
+.vercel

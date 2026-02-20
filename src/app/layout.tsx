@@ -34,6 +34,37 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* 카카오톡 플로팅 버튼 */}
+        <a
+          href="http://pf.kakao.com/_ixhrxhxl/chat"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            position: 'fixed',
+            bottom: '30px',
+            right: '30px',
+            zIndex: 9999,
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            cursor: 'pointer',
+          }}
+          aria-label="카카오톡 상담"
+        >
+          <img
+            src="/카톡_원형_로고.png"
+            alt="카카오톡 상담"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+            }}
+          />
+        </a>
       </body>
     </html>
   );
