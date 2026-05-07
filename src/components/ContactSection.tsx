@@ -161,6 +161,24 @@ export default function ContactSection() {
                 )}
               </button>
 
+              {/* KakaoTalk Consultation Button */}
+              <a
+                href="http://pf.kakao.com/_ixhrxhxl/chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 px-6 rounded-xl font-semibold text-[#191919] bg-[#FEE500] hover:bg-[#FDD835] transform hover:scale-[1.02] transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.81 1.873 5.27 4.687 6.65-.207.77-.748 2.79-.857 3.222-.135.537.197.53.414.385.171-.114 2.717-1.846 3.815-2.594.629.093 1.276.137 1.941.137 5.523 0 10-3.477 10-7.8C22 6.477 17.523 3 12 3z" />
+                </svg>
+                카카오톡으로 상담하기
+              </a>
+
               {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
