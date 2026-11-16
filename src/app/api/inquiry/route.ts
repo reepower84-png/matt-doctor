@@ -76,35 +76,40 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data, error } = await supabase
-      .from('inquiries')
-      .insert([
-        {
-          name,
-          phone,
-          message,
-          status: '대기중',
-        },
-      ])
-      .select()
-      .single();
+    let data: { id: string; created_at: string } | null = null;
+    let error: unknown = null;
+    try {
+      const res = await supabase
+        .from('inquiries')
+        .insert([
+          {
+            name,
+            phone,
+            message,
+            status: '대기중',
+          },
+        ])
+        .select()
+        .single();
+      data = res.data;
+      error = res.error;
+    } catch (err) {
+      error = err;
+    }
 
-    if (error) {
+    // Supabase 가 죽어도 문의를 잃지 않도록: 저장 실패여도 백업(Blob) + 디스코드로는 보낸다.
+    if (error || !data) {
       console.error('Supabase error:', error);
-      return NextResponse.json(
-        { error: '문의 접수 중 오류가 발생했습니다.' },
-        { status: 500 }
-      );
     }
 
     await sendDiscordNotification({
       name,
       phone,
-      message,
-      created_at: data.created_at,
+      message: data ? message : `${message}\n\n⚠️ DB(Supabase) 저장 실패 — 관리자 페이지에는 안 보입니다.`,
+      created_at: data?.created_at ?? new Date().toISOString(),
     });
 
-    return NextResponse.json({ success: true, id: data.id });
+    return NextResponse.json({ success: true, id: data?.id ?? null });
   } catch (error) {
     console.error('Error processing inquiry:', error);
     return NextResponse.json(
